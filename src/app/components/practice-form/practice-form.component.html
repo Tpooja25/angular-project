@@ -1,0 +1,17 @@
+<p>practice-form works!</p>
+<div>
+    <form [formGroup]="registrationForm" (ngSubmit)="submit()">
+        <div>
+            <label>FirstName</label>
+            <input type="text" formControlName="firstname" [ngClass]="{'is-invalid':submitted && registrationForm.get('firstname').errors}">
+             <div *ngIf="submitted && registrationForm.get('firstname').errors" class="invalid-feedback">
+                <div *ngIf="registrationForm.get('firstname').errors['required']">
+                    <p>Firstname is compulsory</p>
+                </div>
+             </div>
+        </div>
+      <div>
+        <button>Submit</button>
+      </div>
+    </form>
+</div>

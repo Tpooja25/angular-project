@@ -10,8 +10,59 @@
                 </div>
              </div>
         </div>
+        <div>
+            <label>lastName</label>
+            <input type="text" formControlName="lastname" [ngClass]="{'is-invalid':submitted && registrationForm.get('lastname').errors}">
+             <div *ngIf="submitted && registrationForm.get('lastname').errors" class="invalid-feedback">
+                <div *ngIf="registrationForm.get('lastname').errors['required']">
+                    <p>lastName is compulsory</p>
+                </div>
+             </div>
+        </div>
       <div>
-        <button>Submit</button>
+        <button (click)="addDetails()">Add</button>
+      </div>
+      <div formArrayName="detailsArray">
+        <div *ngFor="let item of detailsArray().controls, let i = index">
+            <div formGroupName="i">
+                <div>
+                    <label>Email</label>
+                    <input type="text" formControlName="email" [ngClass]="{'is-invalid':submitted && registrationForm.get('email').errors}">
+                     <div *ngIf="submitted && registrationForm.get('email').errors" class="invalid-feedback">
+                        <div *ngIf="registrationForm.get('email').errors['required']">
+                            <p>Email is compulsory</p>
+                        </div>
+                        <div *ngIf="registrationForm.get('email').errors['email']">
+                            <p>Invalid Pattern</p>
+                        </div>
+                     </div>
+                </div><div>
+                    <label>Phnnumber</label>
+                    <input type="text" formControlName="phnno" [ngClass]="{'is-invalid':submitted && registrationForm.get('phnno').errors}">
+                     <div *ngIf="submitted && registrationForm.get('phnno').errors" class="invalid-feedback">
+                        <div *ngIf="registrationForm.get('phnno').errors['required']">
+                            <p>Phnnumber is compulsory</p>
+                        </div>
+                        <div *ngIf="registrationForm.get('email').errors['maxlength']">
+                            <p>Length not more than 10characters</p>
+                        </div>
+                     </div>
+                </div><div>
+                    <label>Address</label>
+                    <input type="text" formControlName="address" [ngClass]="{'is-invalid':submitted && registrationForm.get('address').errors}">
+                     <div *ngIf="submitted && registrationForm.get('address').errors" class="invalid-feedback">
+                        <div *ngIf="registrationForm.get('address').errors['required']">
+                            <p>Address is compulsory</p>
+                        </div>
+                     </div>
+                </div>
+                <div>
+                    <button (click)="delete(i)">Delete</button>
+                </div>
+            </div>
+
+        </div>
+
       </div>
     </form>
 </div>
